@@ -1,5 +1,5 @@
-
 import { ajax } from 'discourse/lib/ajax';
+import { popupAjaxError } from 'discourse/lib/ajax-error';
 
 export default {
   actions: {
@@ -44,7 +44,7 @@ export default {
       ];
 
       const reasons = [
-        {"id": "reason-appealforhelp"},
+        { "id":"reason-appealforhelp"},
         { "id":"reason-bademail"},
         { "id":"reason-cancelaccount"},
         { "id":"reason-confirmemail"},
@@ -68,6 +68,13 @@ export default {
       this.set('list-priority', priority);
       this.set('list-status', status);
       this.set('list-reasons', reasons);
+
+      ajax("/u/search/users?group=staff", {
+        type: 'GET',
+      }).then((users) => {
+        this.set('list-users', users);
+      }).catch(popupAjaxError)
+      .finally(() => {});
     }
   }
 };

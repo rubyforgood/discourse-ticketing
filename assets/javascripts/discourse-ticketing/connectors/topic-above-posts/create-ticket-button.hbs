@@ -8,6 +8,13 @@
 
 {{#if create_ticket_block}}
   <div>
+    <label for="users-options">Users</label>
+    <select id="users-options">
+      {{#each list-users as |option|}}
+        <option value="{{option.username}}">{{option.username}}</option>
+      {{/each}}
+    </select>
+
     <label for="priority-options">Priority</label>
     <select id="priority-options">
       {{#each list-priority as |option|}}
