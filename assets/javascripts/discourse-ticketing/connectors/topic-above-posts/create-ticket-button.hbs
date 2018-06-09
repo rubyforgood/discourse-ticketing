@@ -8,7 +8,11 @@
 
 {{#if create_ticket_block}}
   <div>
-    Hello
-    Priority: <input type="option">
+    <label>Priority</label>
+    <select>
+      {{#each list-priority as |option|}}
+        <option value="{{option.id}}">{{option.id}}</option>
+      {{/each}}
+    </select>
   </div>
 {{/if}}
