@@ -7,14 +7,30 @@ export default Ember.Component.extend({
       var current_state = this.get('create_ticket_block');
       this.set('create_ticket_block', !current_state);
 
-      const priority = [
+      this.set('list-priority', this.actions.priority());
+      this.set('list-status', this.actions.status());
+      this.set('list-reasons', this.actions.reasons());
+
+      var that = this;
+      return ajax("/u/search/users?group=staff", {
+        type: 'GET',
+      }).then((users) => {
+        that.set('list-users', users.users);
+      }).catch(popupAjaxError)
+      .finally(() => {});
+    },
+
+    priority() {
+      return [
         { "id": "priority-high" },
         { "id": "priority-immediate" },
         { "id": "priority-low" },
         { "id": "priority-normal" }
       ];
+    },
 
-      const status = [
+    status() {
+      return [
         { "id": "status-backburner" },
         { "id": "status-new" },
         { "id": "status-resolved" },
@@ -22,8 +38,10 @@ export default Ember.Component.extend({
         { "id": "status-underway" },
         { "id": "status-waiting" }
       ];
+    },
 
-      const reasons = [
+    reasons() {
+      return [
         { "id":"reason-appealforhelp" },
         { "id":"reason-bademail" },
         { "id":"reason-cancelaccount" },
@@ -43,20 +61,7 @@ export default Ember.Component.extend({
         { "id":"reason-topicmerge" },
         { "id":"reason-username" },
         { "id":"reason-webinar" }
-      ]
-
-      this.set('list-priority', priority);
-      this.set('list-status', status);
-      this.set('list-reasons', reasons);
-
-      var that = this;
-
-      return ajax("/u/search/users?group=staff", {
-        type: 'GET',
-      }).then((users) => {
-        that.set('list-users', users.users);
-      }).catch(popupAjaxError)
-      .finally(() => {});
+      ];
     }
   }
 });
