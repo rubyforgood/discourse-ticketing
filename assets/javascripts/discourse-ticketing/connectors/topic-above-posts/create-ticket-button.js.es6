@@ -69,10 +69,12 @@ export default {
       this.set('list-status', status);
       this.set('list-reasons', reasons);
 
-      ajax("/u/search/users?group=staff", {
+      var that = this;
+
+      return ajax("/u/search/users?group=staff", {
         type: 'GET',
       }).then((users) => {
-        this.set('list-users', users);
+        that.set('list-users', users.users);
       }).catch(popupAjaxError)
       .finally(() => {});
     }
