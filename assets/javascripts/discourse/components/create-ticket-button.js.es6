@@ -1,7 +1,7 @@
 import { ajax } from 'discourse/lib/ajax';
 import { popupAjaxError } from 'discourse/lib/ajax-error';
 
-export default {
+export default Ember.Component.extend({
   actions: {
     convertToTicket() {
       var current_state = this.get('create_ticket_block');
@@ -67,4 +67,4 @@ export default {
       .finally(() => {});
     }
   }
-};
+});
