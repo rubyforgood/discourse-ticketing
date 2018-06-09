@@ -34,6 +34,15 @@ export default {
         }
       ];
 
+      const status = [
+        {"id": "status-backburner"},
+        {"id": "status-new"},
+        {"id": "status-resolved"},
+        {"id": "status-triaging"},
+        {"id": "status-underway"},
+        {"id": "status-waiting"}
+      ];
+
       const reasons = [
         {"id": "reason-appealforhelp"},
         { "id":"reason-bademail"},
@@ -57,7 +66,8 @@ export default {
       ]
 
       this.set('list-priority', priority);
-      this.set('list-reasons', reasons)
+      this.set('list-status', status);
+      this.set('list-reasons', reasons);
     }
   }
 };

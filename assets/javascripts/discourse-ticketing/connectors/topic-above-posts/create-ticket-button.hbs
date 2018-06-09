@@ -14,11 +14,20 @@
         <option value="{{option.id}}">{{option.id}}</option>
       {{/each}}
     </select>
+
+    <label for="status-options">Status</label>
+    <select id="status-options">
+      {{#each list-status as |option|}}
+        <option value="{{option.id}}">{{option.id}}</option>
+      {{/each}}
+    </select>
+
     <label for="reasons-options">Reasons</label>
     <select id="reasons-options">
       {{#each list-reasons as |option|}}
         <option value="{{option.id}}">{{option.id}}</option>
       {{/each}}
     </select>
+
   </div>
 {{/if}}
