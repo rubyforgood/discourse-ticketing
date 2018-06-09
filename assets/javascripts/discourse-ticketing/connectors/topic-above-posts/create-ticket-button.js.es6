@@ -7,7 +7,6 @@ export default {
       var current_state = this.get('create_ticket_block');
       this.set('create_ticket_block', !current_state);
 
-
       const priority = [
         {
             "id": "priority-high",
@@ -35,7 +34,30 @@ export default {
         }
       ];
 
+      const reasons = [
+        {"id": "reason-appealforhelp"},
+        { "id":"reason-bademail"},
+        { "id":"reason-cancelaccount"},
+        { "id":"reason-confirmemail"},
+        { "id":"reason-coreapp"},
+        { "id":"reason-exchange"},
+        { "id":"reason-forumpost"},
+        { "id":"reason-forumtopic"},
+        { "id":"reason-memberprofile"},
+        { "id":"reason-networkinvite"},
+        { "id":"reason-nps"},
+        { "id":"reason-onboarding"},
+        { "id":"reason-orgprofile"},
+        { "id":"reason-partnership"},
+        { "id":"reason-resource"},
+        { "id":"reason-skypecall"},
+        { "id":"reason-topicmerge"},
+        { "id":"reason-username"},
+        { "id":"reason-webinar" }
+      ]
+
       this.set('list-priority', priority);
+      this.set('list-reasons', reasons)
     }
   }
 };

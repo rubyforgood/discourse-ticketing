@@ -8,9 +8,15 @@
 
 {{#if create_ticket_block}}
   <div>
-    <label>Priority</label>
-    <select>
+    <label for="priority-options">Priority</label>
+    <select id="priority-options">
       {{#each list-priority as |option|}}
+        <option value="{{option.id}}">{{option.id}}</option>
+      {{/each}}
+    </select>
+    <label for="reasons-options">Reasons</label>
+    <select id="reasons-options">
+      {{#each list-reasons as |option|}}
         <option value="{{option.id}}">{{option.id}}</option>
       {{/each}}
     </select>
