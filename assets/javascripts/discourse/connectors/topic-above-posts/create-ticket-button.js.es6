@@ -10,27 +10,15 @@ export default {
       const priority = [
         {
             "id": "priority-high",
-            "text": "priority-high",
-            "count": 0,
-            "pm_count": 0
         },
         {
             "id": "priority-immediate",
-            "text": "priority-immediate",
-            "count": 0,
-            "pm_count": 0
         },
         {
             "id": "priority-low",
-            "text": "priority-low",
-            "count": 0,
-            "pm_count": 0
         },
         {
             "id": "priority-normal",
-            "text": "priority-normal",
-            "count": 0,
-            "pm_count": 0
         }
       ];
 
