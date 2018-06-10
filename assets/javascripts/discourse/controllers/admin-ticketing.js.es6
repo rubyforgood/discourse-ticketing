@@ -34,20 +34,15 @@ export default Ember.Controller.extend({
   _refreshTags() {
     var order = this.order;
     var ascending = this.ascending;
-    console.log(order, ascending);
-    // var order = this.order;
-    // var ascending = this.ascending;
-    // var tickets = Ember.get(this, 'model')
     var tickets = this.get('model');
     tickets.sort((a, b) => {
       var value = this.sorter(a, b, order);
-      console.log("Compared " + a[order] + " to " + b[order] + " and got " + value)
       if (!ascending) {
         value = value * -1;
       }
       return value;
     })
-    // console.log(tickets.map(t => t.title));
+    // ember won't notice that the array changed if you just sort it in place
     var newTickets = [];
     tickets.map(t => newTickets.pushObject(t));
     this.set('model', newTickets);
