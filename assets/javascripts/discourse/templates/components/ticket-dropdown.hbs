@@ -1,5 +1,5 @@
-<label for="users-options">{{ title }}</label>
-<select id="users-options" onChange={{action onChange value="target.value" title="title"}}>
+<label for="{{field}}-options">{{ title }}</label>
+<select id="{{field}}-options" onChange={{action onChange value="target.value" title="title"}}>
   {{#each list as |option|}}
     {{#if key}}
       <option value="{{get option key}}">{{get option key}}</option>

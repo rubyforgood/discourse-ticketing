@@ -7,10 +7,11 @@
 }}
 
 {{#if create_ticket_block}}
-  <div>
+  <div class="ticket-area">
     {{
       ticket-dropdown
       title="Users"
+      field="users"
       list=list-users
       selected=user-value
       key="username"
@@ -19,6 +20,7 @@
     {{
       ticket-dropdown
       title="Priority"
+      field="priority"
       list=list-priority
       selected=priority-value
       onChange=(action "set_priority")
@@ -26,6 +28,7 @@
     {{
       ticket-dropdown
       title="Status"
+      field="status"
       list=list-status
       selected=status-value
       onChange=(action "set_status")
@@ -33,6 +36,7 @@
     {{
       ticket-dropdown
       title="Reasons"
+      field="reasons"
       list=list-reasons
       selected=reasons-value
       onChange=(action "set_reasons")
