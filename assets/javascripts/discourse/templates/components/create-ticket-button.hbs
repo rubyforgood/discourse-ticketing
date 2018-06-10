@@ -8,10 +8,10 @@
 
 {{#if create_ticket_block}}
   <div>
-    {{ticket-dropdown title="Users" list=list-users key="username"}}
-    {{ticket-dropdown title="Priority" list=list-priority}}
-    {{ticket-dropdown title="Status" list=list-status}}
-    {{ticket-dropdown title="Reasons" list=list-reasons}}
+    {{ticket-dropdown title="Users" list=list-users key="username" onChange=(action "set_users")}}
+    {{ticket-dropdown title="Priority" list=list-priority onChange=(action "set_priority")}}
+    {{ticket-dropdown title="Status" list=list-status onChange=(action "set_status")}}
+    {{ticket-dropdown title="Reasons" list=list-reasons onChange=(action "set_reasons")}}
 
     {{d-button action="save" class="btn-primary btn-small submit-edit" icon="check"}}
     {{d-button action="cancel" class="btn-small cancel-edit" icon="times"}}
