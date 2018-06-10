@@ -1,7 +1,5 @@
 en:
   js:
-    ticketing:
-      title: "Discourse Ticketing"
     discourse_ticketing:
       nav_button_title: Discourse Ticketing
       topics:
