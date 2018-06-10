@@ -1,11 +1,62 @@
 module Ticketing
   class TagGroupConfiguration
     include Singleton
-  
+
+    ### EXTRACT ME TO CONFIG
+
+    def self.priority_order
+      %w(immediate urgent high normal low)
+    end
+
+    def self.status_order
+      %w(new triaging underway waiting resolved backburner)
+    end
+
+    def self.sla_to_priority_map
+      {
+        "immediate" => 1.days,
+        "urgent" => 3.days,
+        "high" => 5.days,
+        "normal" => 7.days,
+        "low" => 14.days
+      }
+    end
+
+    #### end of EXTRACT ME TO CONFIG
+
+    def self.ordered_tag_names_for(tag_group_name)
+      case tag_group_name
+      when :priority
+        priority_order
+      when :status
+        status_order
+      else
+        raise NotImplementedError
+      end
+    end
+
+    def self.extract_priority_tag_names_from(tags)
+      priority_name = 'Ticket Priority'
+      return [] unless tag_group = ::TagGroup.find_by_name(priority_name)
+      priority_tags = tag_group.tags.merge(tags)
+      priority_tags.map { |tag| tag.name.split('-')[1..-1].join('-') }
+    end
+
+    def self.extract_status_tag_names_from(tags)
+      status_group_name = 'Ticket Status'
+      return [] unless status_group = ::TagGroup.find_by_name(status_group_name)
+      status_tags = status_group.tags.merge(tags)
+      status_tags.map { |tag| tag.name.split('-')[1..-1].join('-') }
+    end
+
+    def self.sla_for_priority(priority_name)
+      sla_to_priority_map[priority_name]
+    end
+
     def to_hash
       {
-        priority_tags: serialized_tag_group('priority', %w(immediate urgent high medium low)),
-        status_tags: serialized_tag_group('status', %w(new triaging underway waiting resolved backburner)),
+        priority_tags: serialized_tag_group('priority', self.class.priority_order),
+        status_tags: serialized_tag_group('status', self.class.status_order),
         reason_tags: serialized_tag_group('reason')
       }
     end
@@ -30,7 +81,7 @@ module Ticketing
           serialized_tag[:display_name] == tag_display_name
         end
         # then we append it to the ordered one and delete it from the unordered one
-        if index 
+        if index
           ordered_serialized_tags << unordered_serialized_tags.delete_at(index)
         end
       end
