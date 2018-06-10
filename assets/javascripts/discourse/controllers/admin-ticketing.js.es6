@@ -17,7 +17,6 @@ export default Ember.Controller.extend({
       aValue = priorityMap[a[orderKey]];
       bValue = priorityMap[b[orderKey]];
     }
-    console.log("comparing " + aValue + ' to ' + bValue + ":")
     if (aValue < bValue) {
       return -1;
     }
@@ -43,8 +42,8 @@ export default Ember.Controller.extend({
       return value;
     })
     // ember won't notice that the array changed if you just sort it in place
-    var newTickets = [];
-    tickets.map(t => newTickets.pushObject(t));
+    var newTickets = [...tickets];
+    // tickets.map(t => newTickets.pushObject(t));
     this.set('model', newTickets);
   }
 });
