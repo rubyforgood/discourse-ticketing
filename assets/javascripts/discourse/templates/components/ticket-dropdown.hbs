@@ -1,0 +1,10 @@
+<label for="users-options">{{ title }}</label>
+<select id="users-options">
+  {{#each list as |option|}}
+    {{#unless option.id}}
+      <option value="{{get option key}}">{{get option key}}</option>
+    {{else}}
+      <option value="{{option.id}}">{{option.id}}</option>
+    {{/unless}}
+  {{/each}}
+</select>

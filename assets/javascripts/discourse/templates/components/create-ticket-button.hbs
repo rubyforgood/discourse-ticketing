@@ -8,33 +8,10 @@
 
 {{#if create_ticket_block}}
   <div>
-    <label for="users-options">Users</label>
-    <select id="users-options">
-      {{#each list-users as |option|}}
-        <option value="{{option.username}}">{{option.username}}</option>
-      {{/each}}
-    </select>
-
-    <label for="priority-options">Priority</label>
-    <select id="priority-options">
-      {{#each list-priority as |option|}}
-        <option value="{{option.id}}">{{option.id}}</option>
-      {{/each}}
-    </select>
-
-    <label for="status-options">Status</label>
-    <select id="status-options">
-      {{#each list-status as |option|}}
-        <option value="{{option.id}}">{{option.id}}</option>
-      {{/each}}
-    </select>
-
-    <label for="reasons-options">Reasons</label>
-    <select id="reasons-options">
-      {{#each list-reasons as |option|}}
-        <option value="{{option.id}}">{{option.id}}</option>
-      {{/each}}
-    </select>
+    {{ticket-dropdown title="Users" list=list-users key="username"}}
+    {{ticket-dropdown title="Priority" list=list-priority}}
+    {{ticket-dropdown title="Status" list=list-status}}
+    {{ticket-dropdown title="Reasons" list=list-reasons}}
 
   </div>
 {{/if}}
