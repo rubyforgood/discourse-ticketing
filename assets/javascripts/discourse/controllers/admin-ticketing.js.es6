@@ -32,11 +32,14 @@ export default Ember.Controller.extend({
   ascending: null,
   @observes('order', 'ascending')
   _refreshTags() {
-    console.log(this.order, this.ascending)
     var order = this.order;
     var ascending = this.ascending;
-    var tickets = Ember.get(this, 'model')
-    tickets = tickets.sort((a, b) => {
+    console.log(order, ascending);
+    // var order = this.order;
+    // var ascending = this.ascending;
+    // var tickets = Ember.get(this, 'model')
+    var tickets = this.get('model');
+    tickets.sort((a, b) => {
       var value = this.sorter(a, b, order);
       console.log("Compared " + a[order] + " to " + b[order] + " and got " + value)
       if (!ascending) {
@@ -44,8 +47,10 @@ export default Ember.Controller.extend({
       }
       return value;
     })
-    console.log(tickets.map(t => t.title));
-    Ember.set(this, 'model', tickets);
+    // console.log(tickets.map(t => t.title));
+    var newTickets = [];
+    tickets.map(t => newTickets.pushObject(t));
+    this.set('model', newTickets);
   }
 });
 
