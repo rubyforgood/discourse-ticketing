@@ -42,9 +42,7 @@ export default Ember.Controller.extend({
       return value;
     })
     // ember won't notice that the array changed if you just sort it in place
-    var newTickets = [...tickets];
-    // tickets.map(t => newTickets.pushObject(t));
-    this.set('model', newTickets);
+    this.set('model', [...tickets]);
   }
 });
 
