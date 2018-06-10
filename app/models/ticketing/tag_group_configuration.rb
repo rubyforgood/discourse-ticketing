@@ -2,27 +2,25 @@ module Ticketing
   class TagGroupConfiguration
     include Singleton
     
-    ### EXTRACT ME TO CONFIG
-
     def self.priority_order
-      %w(immediate urgent high medium low)
+      ::SiteSetting.priorities_with_slas
+                      .split(/,?\w+/)
+                      .map { |priority_with_sla| priority_with_sla.split(':').first }
     end
 
     def self.status_order
-      %w(new triaging underway waiting resolved backburner)
+      ::SiteSetting.statuses.split(/,?\w+/)
     end
 
     def self.sla_to_priority_map
-      {
-        "immediate": 1.days,
-        "urgent" 3.days,
-        "high": 5.days,
-        "medium": 7.days,
-        "low": 14.days
-      }
+      as_array = ::SiteSetting.priorities_with_slas
+                      .split(/,?\w+/)
+                      .map { |priority_with_sla|
+                        name, value_int = priority_with_sla.split(':')
+                        [name, value_int.days]
+                      }
+      Hash.new(as_array)
     end
-
-    #### end of EXTRACT ME TO CONFIG
 
     def self.ordered_tag_names_for(tag_group_name)
       case tag_group_name

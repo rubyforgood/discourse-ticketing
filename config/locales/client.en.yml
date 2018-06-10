@@ -13,3 +13,9 @@ en:
             reason: "Reason"
             due_date: "Due Date"
             people: "People"
+  site_settings:
+    priority_tag_group_name: "Name of tag group that defines priorities"
+    status_tag_group_name: "Name of tag group that defines statuses"
+    reason_tag_group_name: "Name of tag group that defines reasons"
+    priorities_with_slas: "Ordered priorities, with time expectations in days (ie immediate:1)"
+    statuses: "Ordered statuses"

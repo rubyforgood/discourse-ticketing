@@ -1,0 +1,16 @@
+plugins:
+  priority_tag_group_name:
+    default: 'priority'
+    client: true
+  status_tag_group_name:
+    default: 'status'
+    client: true
+  reason_tag_group_name:
+    default: 'reason'
+    client: true
+  priorities_with_slas:
+    default: 'immediate:1 urgent:2 high:3 normal:7 low:14'
+    client: true
+  statuses:
+    default: 'new triaging underway waiting resolved backburner'
+    client: true
